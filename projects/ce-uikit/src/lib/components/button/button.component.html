@@ -1,0 +1,12 @@
+<ce-column border
+            [borderColor]="color"
+            rounded="md"
+            [padding]="1"
+            justifyContent="center"
+            cursor="pointer">
+  <button type="button" [paddingX]="2">
+    <ce-text [color]="color">
+      <ng-content></ng-content>
+    </ce-text>
+  </button>
+</ce-column>

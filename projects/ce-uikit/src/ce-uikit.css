@@ -1,0 +1,141 @@
+/* Tailwind reset */
+@tailwind base;
+
+/* Custom Tailwind utility classes */
+@tailwind utilities;
+
+/* 
+ Defining default theme with all variables for
+ - branding colors
+ - semantic colors
+ - neutrals colors
+ - border colors
+ - text colors and font
+*/
+:root {
+    /* Branding */
+    --primary: #4263EB;
+    --primary-50: #D9E3FE;
+    --primary-300: #8DA6F9;
+    --primary-700: #2136A9;
+    --primary-900: #0C1870;
+    --secondary: #E53825;
+    --secondary-50: #FDE5D3;
+    --secondary-300: #F79B7A; 
+    --secondary-700: #A4121B; 
+    --secondary-900: #6D071E; 
+
+    /* Semantic */
+    --success: #4CAF50;
+    --success-50: #E7FBDE;
+    --success-300: #A3E798;
+    --success-700: #267D39;
+    --success-900: #0E532A;
+    --warning: #FF9800;
+    --warning-50:#FFF2CC;
+    --warning-300:#FFCD66;
+    --warning-700:#B75E00;
+    --warning-900:#7A3400;
+    --error: #F44336;
+    --error-50: #FEE6D6;
+    --error-300: #FBA186;
+    --error-700: #AF1B29;
+    --error-900: #750A26;
+
+    /* Neutrals */
+    --light-neutral : #FFFFFF;
+    --light-neutral-50 : #FEFEFE;
+    --light-neutral-100 : #FDFDFE;
+    --light-neutral-200 : #FCFCFD;
+    --light-neutral-300 : #FAFBFC;
+    --light-neutral-400 : #F9FAFB;
+    --light-neutral-600 : #F7F8F9;
+    --light-neutral-700 : #F6F7F9;
+    --light-neutral-800 : #F5F6F8;
+    --light-neutral-900 : #F3F5F6;
+    --dark-neutral : #2d2d2d;
+    --dark-neutral-50 : #111;
+    --dark-neutral-100 : #1C1C1C;
+    --dark-neutral-200 : #222;
+    --dark-neutral-300 : #282828;
+    --dark-neutral-400 : #4D4D4D;
+    --dark-neutral-600 : #6C6C6C;
+    --dark-neutral-700 : #969696;
+    --dark-neutral-800 : #C0C0C0;
+    --dark-neutral-900 : #E6E6E6;
+
+    /* Borders */
+    --light-border: #efefef;
+    --light-border-50: #FDFDFD;
+    --light-border-300: #F4F4F4;
+    --light-border-700: #EBEBEB;
+    --light-border-900: #E4E4E4;
+    --dark-border: #525252;
+    --dark-border-50: #282828;
+    --dark-border-300: #414141;
+    --dark-border-700: #868686;
+    --dark-border-900: #EAEAEA;
+
+    /* Texts */
+    --light-text : #2d2d2d;
+    --light-text-muted : #00000080;
+    --light-text-disabled : #d2d6d9;
+    --dark-text : #dcdcdc;
+    --dark-text-muted : #656565;
+    --dark-text-disabled : #474747;
+
+    /* Font */
+    --font-sans: "Helvetica", "Arial", sans-serif;
+    --font-size-small: 9px;
+    --font-size-base: 11px;
+    --font-size-lg: 12px;
+    --font-size-xl: 16px;
+    --font-size-2xl: 21px;
+    --font-size-3xl: 28px;
+    --font-size-4xl: 38px;
+    --font-size-5xl: 50px;
+}
+
+/* Ligh mode */
+html {
+    --neutral : var(--light-neutral);
+    --neutral-50 : var(--light-neutral-50);
+    --neutral-100 : var(--light-neutral-100);
+    --neutral-200 : var(--light-neutral-200);
+    --neutral-300 : var(--light-neutral-300);
+    --neutral-400 : var(--light-neutral-400);
+    --neutral-600 : var(--light-neutral-600);
+    --neutral-700 : var(--light-neutral-700);
+    --neutral-800 : var(--light-neutral-800);
+    --neutral-900 : var(--light-neutral-900);
+    --border: var(--light-border);
+    --border-50: var(--light-border-50);
+    --border-300: var(--light-border-300);
+    --border-700: var(--light-border-700);
+    --border-900: var(--light-border-900);
+    --text : var(--light-text);
+    --text-muted : var(--light-text-muted);
+    --text-disabled : var(--light-text-disabled);
+}
+
+/* Dark mode */
+.dark {
+    --neutral : var(--dark-neutral);
+    --neutral-50 : var(--dark-neutral-50);
+    --neutral-100 : var(--dark-neutral-100);
+    --neutral-200 : var(--dark-neutral-200);
+    --neutral-300 : var(--dark-neutral-300);
+    --neutral-400 : var(--dark-neutral-400);
+    --neutral-600 : var(--dark-neutral-600);
+    --neutral-700 : var(--dark-neutral-700);
+    --neutral-800 : var(--dark-neutral-800);
+    --neutral-900 : var(--dark-neutral-900);
+    --border: var(--dark-border);
+    --border-50: var(--dark-border-50);
+    --border-300: var(--dark-border-300);
+    --border-700: var(--dark-border-700);
+    --border-900: var(--dark-border-900);
+    --text : var(--dark-text);
+    --text-muted : var(--dark-text-muted);
+    --text-disabled : var(--dark-text-disabled);
+}

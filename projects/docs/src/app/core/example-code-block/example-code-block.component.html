@@ -1,0 +1,7 @@
+<ce-column [gap]="2">
+  <div #codeBlockContainer></div>
+
+  <ce-container>
+    <pre [padding]="4" *ngIf="source"><code [innerHTML]="source"></code></pre>
+  </ce-container>
+</ce-column>

@@ -1,0 +1,26 @@
+@font-face {
+    font-family: "ce-uikit-icons";
+    src: url("./ce-uikit-icons.ttf?44e4c9bff7107b0e46db90831a6e7390") format("truetype"),
+url("./ce-uikit-icons.woff?44e4c9bff7107b0e46db90831a6e7390") format("woff"),
+url("./ce-uikit-icons.woff2?44e4c9bff7107b0e46db90831a6e7390") format("woff2"),
+url("./ce-uikit-icons.eot?44e4c9bff7107b0e46db90831a6e7390#iefix") format("embedded-opentype"),
+url("./ce-uikit-icons.svg?44e4c9bff7107b0e46db90831a6e7390#ce-uikit-icons") format("svg");
+}
+
+.ce:before {
+    font-family: ce-uikit-icons !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.ce.ce-chevron_down:before {
+    content: "\f101";
+}
+.ce.ce-close:before {
+    content: "\f102";
+}

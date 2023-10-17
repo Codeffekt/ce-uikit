@@ -1,0 +1,20 @@
+<ce-container [padding]="3"
+               rounded
+               [shadow]="3"
+               [bgColor]="data.type | toastBackgroundColor ">
+  <ce-row alignItems="center" [gap]="1">
+    <svg
+           height="24"
+           viewBox="0 0 24 24"
+           width="24"
+           xmlns="http://www.w3.org/2000/svg"
+           fill="#fff" *ngIf="data.type === 'success'">
+        <path d="M0 0h24v24H0z" fill="none" />
+        <path
+              d="M9 16.17l-3.59-3.59L4 13l5 5 10-10-1.41-1.41L9 16.17z" />
+      </svg>
+    <ce-text-heading-6 [color]="data.type | toastTextColor">
+      {{data.message}}
+    </ce-text-heading-6>
+  </ce-row>
+</ce-container>

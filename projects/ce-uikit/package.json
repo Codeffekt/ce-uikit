@@ -1,0 +1,28 @@
+{
+  "name": "@codeffekt/ce-uikit",
+  "version": "0.1.0",
+  "description": "Versatile UI Kit including layout utilities and a collection of components",
+  "author": {
+    "name": "Codeffekt",
+    "email": "contact@codeffekt.com",
+    "url": "https://codeffekt.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codeffekt/ce-uikit.git"
+  },
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "Apache-2.0",
+  "peerDependencies": {
+    "@angular/cdk": "^16.2.1",
+    "@angular/common": "^16.0.0",
+    "@angular/core": "^16.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false
+}

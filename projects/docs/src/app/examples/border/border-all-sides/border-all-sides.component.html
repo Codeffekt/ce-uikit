@@ -1,0 +1,12 @@
+<ce-row [gap]="4">
+  <!-- <ce-container bgColor="primary" width="120px" height="120px" [rounded] [border]="4" [borderColor]="borderColor"></ce-container>-->
+  <ce-container
+                 bgColor="primary"
+                 width="120px"
+                 height="120px"
+                 rounded="xl"
+                 borderBottom
+                 borderColor="secondary">
+  </ce-container>
+</ce-row>
+<button (click)="borderColor = borderColor === 'secondary' ? 'tertiary' : 'secondary'">Toggle color</button>

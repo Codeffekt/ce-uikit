@@ -1,0 +1,16 @@
+<ce-column>
+  <ce-row [paddingY]="2" [paddingX]="3" borderBottom>
+    <ce-container grow>
+      <ng-content select="ce-dialog-title"></ng-content>
+    </ce-container>
+    <ce-icon-button *ngIf="canClose" (click)="onClose()">
+      <ce-icon fontSet="ce" fontIcon="ce-close"></ce-icon>
+    </ce-icon-button>
+  </ce-row>
+
+  <ce-column [padding]="3" [gap]="4">
+    <ng-content select="ce-dialog-content"></ng-content>
+    <ng-content select="ce-dialog-actions"></ng-content>
+  </ce-column>
+
+</ce-column>

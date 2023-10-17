@@ -1,0 +1,17 @@
+{
+    "inputDir": "./resources/icons",
+    "outputDir": "./build/icons",
+    "assetTypes": [
+        "css"
+    ],
+    "name": "ce-uikit-icons",
+    "fontTypes": [
+        "ttf",
+        "woff",
+        "woff2",
+        "eot",
+        "svg"
+    ],
+    "selector":".ce",
+    "prefix":"ce"
+}

@@ -1,0 +1,35 @@
+<ce-row
+               (click)="toggle()"
+               cdkOverlayOrigin
+               #trigger
+               border
+               rounded="2px"
+               hover.borderColor="border-900"
+               focus.borderColor="primary"
+               [paddingX]="2"
+               minHeight="28px"
+               minWidth="28px"
+               #origin="cdkOverlayOrigin"
+               alignItems="center">
+  <ce-text [truncate]="true" grow>{{value | optionLabel}}</ce-text>
+  <ce-icon fontSet="ce" fontIcon="ce-chevron_down" size="xs" color="text-muted"></ce-icon>
+</ce-row>
+
+<ng-template
+             cdkConnectedOverlay
+             cdkConnectedOverlayHasBackdrop
+             cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop"
+             [cdkConnectedOverlayMinWidth]="triggerBbox?.width!"
+             [cdkConnectedOverlayOrigin]="origin"
+             [cdkConnectedOverlayOpen]="isOpen"
+             [cdkConnectedOverlayPositions]="positions"
+             (backdropClick)="toggle()">
+  <ce-column
+              border
+              [marginTop]="1"
+              width="100%"
+              maxHeight="400px"
+              overflow="auto">
+    <ng-content></ng-content>
+  </ce-column>
+</ng-template>

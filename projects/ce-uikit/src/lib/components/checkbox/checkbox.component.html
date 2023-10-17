@@ -1,0 +1,9 @@
+<ce-row class="checkbox-container" >
+  <input type="checkbox"
+         [ngModel]="value"
+         (ngModelChange)="onChange(value)" />
+  <span class="check"></span>
+  <ce-text [selectable]="false">
+    <ng-content></ng-content>
+  </ce-text>
+</ce-row>

@@ -1,0 +1,10 @@
+@import '../build/ce-uikit.bundle.css';
+@import '../build/icons/ce-uikit-icons.css';
+
+/* Font */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap"); 
+
+/* Theme */
+:root {
+    --font-sans: "inter", "cursive";    
+}

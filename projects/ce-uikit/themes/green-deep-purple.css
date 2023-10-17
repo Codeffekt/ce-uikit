@@ -1,0 +1,8 @@
+@import '../build/ce-uikit.bundle.css';
+@import '../build/icons/ce-uikit-icons.css';
+
+/* Theme */
+:root {
+    --primary: #0ca40c;
+    --secondary: #52037d;
+}
