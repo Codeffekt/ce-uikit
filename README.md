@@ -1,12 +1,12 @@
 
 <p align="center">
-      <img src="./projects/docs/public/logo.svg" alt"logo" width="128px" height="128px">
+      <img src="https://github.com/Codeffekt/ce-uikit/raw/master/projects/docs/public/logo.svg" alt"logo" width="128px" height="128px">
 </p>
 
 <h1 align="center">ce-uikit</h1>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-v0.1.0-blue.svg" alt="Version">
+  <img src="https://img.shields.io/npm/v/@codeffekt/ce-uikit/latest.svg" alt="Version">
   <img src="https://img.shields.io/github/license/saltstack/salt" alt="License">
 </p>
 
