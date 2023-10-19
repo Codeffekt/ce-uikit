@@ -1,17 +1,15 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input } from '@angular/core';
-import { CeColorPickerUtils } from './color-picker.utils';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
   selector: 'ce-color-picker',
   templateUrl: './color-picker.component.html',
   styleUrls: ['./color-picker.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CeColorPickerComponent {
 
-  @Input() color: string = '#1dbaa5';
+  @Input() color: string = '#FFFFFF';
   tint?: string;
-  selectedColor?:string;
+  selectedColor = this.color;
 
   onTintSelected(color: string) {
     this.tint = color;
@@ -20,4 +18,4 @@ export class CeColorPickerComponent {
   onColorSelected(color: string) {
     this.selectedColor = color;
   }
-}
+} 

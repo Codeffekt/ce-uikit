@@ -1,7 +1,3 @@
 :host {
-    position:relative;
-}
-
-:host ce-color-handler {
-    transform:translate(-50%,-50%);
+    overflow: hidden;
 }

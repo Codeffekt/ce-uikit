@@ -4,7 +4,9 @@
                       [color]="color"
                       [tint]="tint"
                       (colorChanges)="onColorSelected($event)"></ce-color-palette>
-    <ce-color-tint (tint)="onTintSelected($event)"></ce-color-tint>
+    <ce-color-tint [color]="color"
+                   (tint)="onTintSelected($event)">
+    </ce-color-tint>
   </ce-grid>
   <ce-text> Color: {{selectedColor}}</ce-text>
 </ce-container>

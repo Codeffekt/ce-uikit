@@ -14,7 +14,6 @@ export class ColorPaletteComponent implements OnChanges {
   @Output() colorChanges = new EventEmitter<string>();
 
   gradients: CeGradient[] = [];
-  colorPosition?: CeGradientColorPosition;
 
   constructor() { }
 
@@ -22,7 +21,7 @@ export class ColorPaletteComponent implements OnChanges {
 
     if (changes['color']) {
       this.computeTint(this.color);
-      this.updateColorPosition(this.color);
+      this.colorToPosition(this.color);
     }
 
     if (changes['gradients'] || changes['tint']) {
@@ -34,10 +33,6 @@ export class ColorPaletteComponent implements OnChanges {
     this.colorChanges.next(color);
   }
 
-  onColorPositionChanged(colorPosition: CeGradientColorPosition) {
-    this.colorPosition = colorPosition;
-  }
-
   private updateGradients() {
     this.gradients = [
       {
@@ -45,7 +40,7 @@ export class ColorPaletteComponent implements OnChanges {
         stopColors: ['#fff', this.tint ?? "f00"],
       },
       {
-        type: 'vertical', 
+        type: 'vertical',
         stopColors: ['rgba(0,0,0,0)', '#000'],
       }
     ];
@@ -55,8 +50,9 @@ export class ColorPaletteComponent implements OnChanges {
     this.tint = CeColorPickerUtils.saturateColor(color);
   }
 
-  private updateColorPosition(color: string) {
+  colorToPosition(color: string) {
     const [_, s, b] = CeColorPickerUtils.hexToHsb(color);
-    this.colorPosition = { x: s, y: 100 - b }
+    const pos = { x: s, y: 100 - b }
+    return pos;
   }
 }

@@ -10,6 +10,7 @@ import { ColorSwatchesComponent } from './color-swatches/color-swatches.componen
 import { ColorTintComponent } from './color-tint/color-tint.component';
 import { ColorOpacityComponent } from './color-opacity/color-opacity.component';
 import { ColorHandlerComponent } from './color-handler/color-handler.component';
+import { GradientPickerComponent } from './gradient/gradient-picker/gradient-picker.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ColorHandlerComponent } from './color-handler/color-handler.component';
     ColorTintComponent,
     ColorOpacityComponent,
     ColorHandlerComponent,
+    GradientPickerComponent,
   ],
   imports: [
     CommonModule,
