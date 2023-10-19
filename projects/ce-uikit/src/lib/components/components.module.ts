@@ -12,6 +12,7 @@ import { CeOverlayModule } from './overlay';
 import { CePopoverModule } from './popover';
 import { CeToastModule } from './toast';
 import { CeTooltipModule } from './tooltip';
+import { CeColorPickerModule } from './color-picker';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { CeTooltipModule } from './tooltip';
   exports: [
     CeButtonModule,
     CeCheckboxModule,
+    CeColorPickerModule,
     CeFormFieldModule,
     CeIconModule,
     CeInputModule,

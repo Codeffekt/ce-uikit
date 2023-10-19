@@ -1,0 +1,14 @@
+<ce-gradient
+             width="100%"
+             height="100%"
+             [gradients]="gradients"
+             (color)="onColorSelected($event)"
+             (colorPosition)="onColorPositionChanged($event)">
+</ce-gradient>
+
+<ce-color-handler *ngIf="colorPosition"
+                  position="absolute"
+                  top="{{colorPosition.y}}%"
+                  left="{{colorPosition.x}}%"
+                  >
+</ce-color-handler>

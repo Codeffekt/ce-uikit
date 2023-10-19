@@ -1,0 +1,10 @@
+<ce-container [padding]="4" width="500px" height="400px">
+  <ce-grid [gap]="2" gridCols="1fr 22px">
+    <ce-color-palette
+                      [color]="color"
+                      [tint]="tint"
+                      (colorChanges)="onColorSelected($event)"></ce-color-palette>
+    <ce-color-tint (tint)="onTintSelected($event)"></ce-color-tint>
+  </ce-grid>
+  <ce-text> Color: {{selectedColor}}</ce-text>
+</ce-container>

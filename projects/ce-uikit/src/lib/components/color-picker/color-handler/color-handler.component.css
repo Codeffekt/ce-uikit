@@ -1,0 +1,8 @@
+:host {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 100px;
+    border: 2px solid white;
+    pointer-events: none;
+}
