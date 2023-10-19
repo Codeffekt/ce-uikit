@@ -7,7 +7,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 })
 export class CeColorPickerComponent {
 
-  @Input() color: string = '#FFFFFF';
+  @Input() color: string = '#AEED5F';
   tint?: string;
   selectedColor = this.color;
 

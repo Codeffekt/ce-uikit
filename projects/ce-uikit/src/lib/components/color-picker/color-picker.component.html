@@ -1,5 +1,5 @@
 <ce-container [padding]="4" width="500px" height="400px">
-  <ce-grid [gap]="2" gridCols="1fr 22px">
+  <ce-column [gap]="2">
     <ce-color-palette
                       [color]="color"
                       [tint]="tint"
@@ -7,6 +7,6 @@
     <ce-color-tint [color]="color"
                    (tint)="onTintSelected($event)">
     </ce-color-tint>
-  </ce-grid>
+  </ce-column>
   <ce-text> Color: {{selectedColor}}</ce-text>
 </ce-container>

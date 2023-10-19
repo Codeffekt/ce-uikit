@@ -1,7 +1,9 @@
 <ce-gradient-picker
                     [colorToPosition]="colorToPosition"
                     [color]="color"
-                    lock="x"
-                    (colorChanges)="onTintSelected($event)">
+                    lock="y"
+                    (colorChanges)="onTintSelected($event)"
+                    width="100%"
+                    height="40px">
   <ce-gradient [gradients]="[gradient]"></ce-gradient>
 </ce-gradient-picker>

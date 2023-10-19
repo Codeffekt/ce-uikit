@@ -1,3 +1,6 @@
 :host {
     overflow: hidden;
+    height:12px;
+    display: block;
+    border-radius:12px;
 }

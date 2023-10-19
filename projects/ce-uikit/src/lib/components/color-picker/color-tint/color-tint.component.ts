@@ -14,7 +14,7 @@ export class ColorTintComponent implements OnInit {
   @Output() tint = new EventEmitter<string>();
 
   gradient: CeGradient = {
-    type: 'vertical',
+    type: 'horizontal',
     stopColors: ['red', '#ff0', '#0f0', '#0ff', '#00f', '#f0f', 'red']
   }
 
@@ -29,7 +29,6 @@ export class ColorTintComponent implements OnInit {
 
   colorToPosition(): CeGradientColorPosition {
     const [h, _, __] = CeColorPickerUtils.hexToHsb(this.color);
-    console.log(h);
-    return { x: 50, y: h * 100 / 360 };
+    return { x: h * 100 / 360, y: 50, };
   }
 }

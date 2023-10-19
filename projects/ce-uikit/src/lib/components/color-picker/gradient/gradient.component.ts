@@ -21,6 +21,7 @@ export class CeGradientComponent implements OnChanges, AfterViewInit {
   ngAfterViewInit(): void {
     this.configureCanvas();
     this.updateGradient();
+    console.log(this.elementRef.nativeElement.clientHeight)
   }
 
   ngOnChanges(changes: SimpleChanges): void {
