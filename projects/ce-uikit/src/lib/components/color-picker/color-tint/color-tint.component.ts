@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { CeGradient, CeGradientColorPosition } from '../gradient/gradient';
 import { CeColorPickerUtils } from '../color-picker.utils';
+import { CeGradient, CeGradientColorPosition } from '../gradient/gradient';
 
 @Component({
   selector: 'ce-color-tint',

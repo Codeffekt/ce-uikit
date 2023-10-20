@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ContentChild, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ContentChild, ElementRef, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Subject, fromEvent, takeUntil } from 'rxjs';
 import { CeColorPickerUtils } from '../../color-picker.utils';
 import { CeGradientColorPosition } from '../gradient';
@@ -9,7 +9,7 @@ import { CeGradientComponent } from '../gradient.component';
   templateUrl: './gradient-picker.component.html',
   styleUrls: ['./gradient-picker.component.css']
 })
-export class GradientPickerComponent implements OnInit, AfterViewInit, OnDestroy {
+export class GradientPickerComponent implements OnInit, AfterViewInit, OnDestroy, OnChanges {
 
   @Input() colorToPosition!: (color: string) => CeGradientColorPosition;
   @Input() color?: string;
@@ -30,17 +30,27 @@ export class GradientPickerComponent implements OnInit, AfterViewInit, OnDestroy
 
   ngAfterViewInit(): void {
     this.listenClickEvent();
-
-    if (this.color) {
-      const colorPosition = this.colorToPosition(this.color);
-      this.setColorPosition(colorPosition);
-      this.cdr.detectChanges();
-    }
+    this.listenGradientChanges();
+    this.updateColorPosition();
   }
 
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['color']) {
+      this.updateColorPosition();
+    }
+  }
+
+  private updateColorPosition() {
+    if (this.color) {
+      const colorPosition = this.colorToPosition(this.color);
+      this.setColorPosition(colorPosition);
+      this.cdr.detectChanges();
+    }
   }
 
   listenClickEvent() {
@@ -51,6 +61,12 @@ export class GradientPickerComponent implements OnInit, AfterViewInit, OnDestroy
     fromEvent<MouseEvent>(this.gradientElementRef?.nativeElement, 'mousedown')
       .pipe(takeUntil(this.destroy$))
       .subscribe(event => this.onMouseDown(event));
+  }
+
+  listenGradientChanges() {
+    this.gradientComponent?.gradientChanges()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(_ => this.updateSelectedColor());
   }
 
   onClick(mouseEvent: MouseEvent) {
@@ -86,7 +102,7 @@ export class GradientPickerComponent implements OnInit, AfterViewInit, OnDestroy
 
   private setColorPosition(position: CeGradientColorPosition) {
     const pos_x_percent = this.lock === 'x' ? this.colorPosition?.x ?? position.x : position.x;
-    const pos_y_percent = this.lock === 'y' ? this.colorPosition?.y ?? position.y: position.y;
+    const pos_y_percent = this.lock === 'y' ? this.colorPosition?.y ?? position.y : position.y;
 
     this.colorPosition = { x: pos_x_percent, y: pos_y_percent };
   }

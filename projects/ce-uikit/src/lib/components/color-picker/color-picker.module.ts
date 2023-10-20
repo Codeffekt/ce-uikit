@@ -11,7 +11,12 @@ import { ColorTintComponent } from './color-tint/color-tint.component';
 import { ColorOpacityComponent } from './color-opacity/color-opacity.component';
 import { ColorHandlerComponent } from './color-handler/color-handler.component';
 import { GradientPickerComponent } from './gradient/gradient-picker/gradient-picker.component';
-
+import { CeColorPickerDirective } from './color-picker';
+import { OverlayModule } from '@angular/cdk/overlay';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CeInputModule } from '../input';
+import { CeButtonModule } from '../button';
+import { ColorSwatchItemComponent } from './color-swatches/color-swatch-item/color-swatch-item.component';
 @NgModule({
   declarations: [
     CeColorPickerComponent,
@@ -22,15 +27,23 @@ import { GradientPickerComponent } from './gradient/gradient-picker/gradient-pic
     ColorOpacityComponent,
     ColorHandlerComponent,
     GradientPickerComponent,
+    CeColorPickerDirective,
+    ColorSwatchItemComponent
   ],
   imports: [
     CommonModule,
     CeTextModule,
     CeLayoutModule,
     CeUtilitiesModule,
+    OverlayModule,
+    FormsModule,
+    ReactiveFormsModule,
+    CeInputModule,
+    CeButtonModule
   ],
   exports: [
-    CeColorPickerComponent
+    CeColorPickerComponent,
+    CeColorPickerDirective
   ]
 })
 export class CeColorPickerModule { }

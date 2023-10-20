@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnChanges, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { CanvasGradientBuilder } from './canvas-gradient.builder';
 import { CeGradient } from './gradient';
+import { Observable, Subject } from 'rxjs';
 
 @Component({
   selector: 'ce-gradient',
@@ -10,7 +11,7 @@ import { CeGradient } from './gradient';
 export class CeGradientComponent implements OnChanges, AfterViewInit {
 
   @Input() gradients: CeGradient[] = [];
-  @Output() gradientsChanges = new EventEmitter<CeGradient[]>();
+  private gradients$ = new Subject<CeGradient[]>();
 
   @ViewChild('canvas') canvas!: ElementRef;
 
@@ -21,13 +22,16 @@ export class CeGradientComponent implements OnChanges, AfterViewInit {
   ngAfterViewInit(): void {
     this.configureCanvas();
     this.updateGradient();
-    console.log(this.elementRef.nativeElement.clientHeight)
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (!changes['gradients'].isFirstChange()) {
       this.updateGradient();
     }
+  }
+
+  gradientChanges():Observable<CeGradient[]>{
+    return this.gradients$;
   }
 
   get context(): CanvasRenderingContext2D {
@@ -46,7 +50,7 @@ export class CeGradientComponent implements OnChanges, AfterViewInit {
       this.context.fillStyle = new CanvasGradientBuilder(this.context).withGradient(gradient).build();;
       this.context.fillRect(0, 0, this.context.canvas.width, this.context.canvas.height);
     }
-    this.gradientsChanges.next(this.gradients);
+    this.gradients$.next(this.gradients);
   }
 
   private configureCanvas() {

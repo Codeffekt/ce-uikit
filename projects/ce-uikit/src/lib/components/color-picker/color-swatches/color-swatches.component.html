@@ -1,0 +1,7 @@
+<ce-grid gridCols="repeat(auto-fit, minmax(20px, 1fr))" [gap]="2" justifyItems="center">
+  <ce-color-swatch-item
+                        *ngFor="let color of colors"
+                        [color]="color"
+                        (click)="onColorSelected(color)">
+  </ce-color-swatch-item>
+</ce-grid>
