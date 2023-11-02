@@ -2,15 +2,19 @@ import { Overlay, OverlayConfig, OverlayRef } from "@angular/cdk/overlay";
 import { ComponentPortal } from "@angular/cdk/portal";
 import { Directive, ElementRef, EventEmitter, HostListener, Input, OnDestroy, OnInit, Output } from "@angular/core";
 import { Subject } from "rxjs";
-import { CeColorPickerComponent } from "./color-picker.component";
+import { CeColorPickerComponent, CeColorPickerUpdateMode } from "./color-picker.component";
+
+const DEFAULT_COLOR = "#FFFFFF";
+const DEFAULT_UPDATE_MODE: CeColorPickerUpdateMode = 'continous';
 
 @Directive({
     selector: '[ceColorPicker]'
 })
 export class CeColorPickerDirective implements OnInit, OnDestroy {
 
-    @Input({ alias: 'ceColor' }) color: string = "#FFFFFF";
-    @Output() colorPicked = new EventEmitter<string>(); 
+    @Input({ alias: 'ceColor' }) color?: string;
+    @Input({alias:'ceColorUpdateMode'}) updateMode?: CeColorPickerUpdateMode;
+    @Output() colorPicked = new EventEmitter<string>();
 
     @HostListener('click')
     show() {
@@ -27,7 +31,6 @@ export class CeColorPickerDirective implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.initOverlay();
-        // this.show();
     }
 
     ngOnDestroy(): void {
@@ -83,11 +86,14 @@ export class CeColorPickerDirective implements OnInit, OnDestroy {
         const colorPickerPortal = new ComponentPortal(CeColorPickerComponent);
         const colorPickerRef = this.overlayRef.attach(colorPickerPortal);
 
-        colorPickerRef.instance.color = this.color;
-        colorPickerRef.instance.validate.subscribe(color => {
+        colorPickerRef.instance.color = this.color ?? DEFAULT_COLOR;
+        colorPickerRef.instance.updateMode = this.updateMode ?? DEFAULT_UPDATE_MODE;
+        colorPickerRef.instance.colorPicked.subscribe(color => {
             this.colorPicked.next(color);
-            this.detach();
-        })
+        });
+        colorPickerRef.instance.colorValidated.subscribe(_ =>
+            this.detach()
+        );
     }
 
     private detach() {

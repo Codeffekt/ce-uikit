@@ -9,8 +9,4 @@
     --font-sans: "inter", "cursive";    
 }
 
-.cdk-overlay-transparent-backdrop {
-    background:blue;
-}
-
 @import '@angular/cdk/overlay-prebuilt.css';

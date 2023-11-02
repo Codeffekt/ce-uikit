@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject, Subscription, takeUntil } from 'rxjs';
+
+export type CeColorPickerUpdateMode = 'validation' | 'continous';
 
 @Component({
   selector: 'ce-color-picker',
@@ -11,19 +13,23 @@ import { Subject, takeUntil } from 'rxjs';
 export class CeColorPickerComponent implements OnInit, OnDestroy {
 
   @Input() color!: string;
-  @Output() validate = new EventEmitter<string>();
+  @Input() updateMode :CeColorPickerUpdateMode = 'continous';
+  @Output() colorPicked = new EventEmitter<string>();
+  @Output() colorValidated = new EventEmitter<string>();
 
   tint?: string;
   selectedColor!: string;
   form!: FormGroup;
 
   private destroy$ = new Subject<void>();
+  private formSub?: Subscription;
 
   constructor(private formBuilder: FormBuilder, private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.selectedColor = this.color;
     this.initForm();
+    this.listenForm();
   }
 
   ngOnDestroy(): void {
@@ -37,7 +43,13 @@ export class CeColorPickerComponent implements OnInit, OnDestroy {
 
   onColorSelected(color: string) {
     this.selectedColor = color;
-    this.form.patchValue({ 'color': color }, { emitEvent: false });
+    this.unlistenForm();
+    this.form.patchValue({ 'color': color }, { onlySelf: true, emitEvent: false });
+    this.listenForm();
+
+    if(this.updateMode === 'continous'){
+      this.notifyColorPicked(this.selectedColor);
+    }
   }
 
   onColorPaletteSelected(color: string) {
@@ -45,19 +57,27 @@ export class CeColorPickerComponent implements OnInit, OnDestroy {
   }
 
   onValidate() {
-    this.validate.next(this.selectedColor);
+    this.notifyColorPicked(this.selectedColor);
+    this.colorValidated.next(this.selectedColor);
+  }
+
+  private notifyColorPicked(color: string) {
+    this.colorPicked.next(color);
   }
 
   private initForm() {
     this.form = this.formBuilder.group({
       'color': this.color
     });
+  }
 
-    this.form.get('color')?.valueChanges
+  private listenForm() {
+    this.formSub = this.form.get('color')?.valueChanges
       .pipe(takeUntil(this.destroy$))
-      .subscribe(color => {
-        // this.color = color;
-        // this.cdr.detectChanges();
-      });
+      .subscribe((color) => this.color = color);
+  }
+
+  private unlistenForm() {
+    this.formSub?.unsubscribe();
   }
 } 

@@ -1,0 +1,14 @@
+<ce-row [gap]="2"
+        alignItems="center">
+  <ce-container
+                width="24px"
+                height="24px"
+                rounded
+                ceColorPicker
+                [ceColorUpdateMode]="updateMode"
+                [ceColor]="value"
+                [style.background-color]="value"
+                (colorPicked)="onColorChanged($event)">
+  </ce-container>
+  <ce-text *ngIf="valueDisplayed">{{value}}</ce-text>
+</ce-row>

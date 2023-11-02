@@ -17,6 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CeInputModule } from '../input';
 import { CeButtonModule } from '../button';
 import { ColorSwatchItemComponent } from './color-swatches/color-swatch-item/color-swatch-item.component';
+
 @NgModule({
   declarations: [
     CeColorPickerComponent,

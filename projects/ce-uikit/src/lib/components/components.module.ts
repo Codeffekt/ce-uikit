@@ -5,7 +5,7 @@ import { CeCheckboxModule } from './checkbox';
 import { CeDialogModule } from './dialog';
 import { CeFormFieldModule } from './form-field';
 import { CeIconModule } from './icon';
-import { CeInputModule } from './input';
+import { CeInputColorModule, CeInputModule } from './input';
 import { CeSelectModule } from './select';
 import { CeTextModule } from './text';
 import { CeOverlayModule } from './overlay';
@@ -27,6 +27,7 @@ import { CeColorPickerModule } from './color-picker';
     CeFormFieldModule,
     CeIconModule,
     CeInputModule,
+    CeInputColorModule,
     CeOverlayModule,
     CeTextModule,
     CeSelectModule,

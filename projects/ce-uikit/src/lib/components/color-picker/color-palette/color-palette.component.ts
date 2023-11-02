@@ -21,13 +21,10 @@ export class ColorPaletteComponent implements OnChanges {
 
     if (changes['color']) {
       this.computeTint(this.color);
-      this.colorToPosition(this.color);
-      
-      // TODO: check what's wrong
-      this.updateGradients();
-    }
+      this.colorToPosition(this.color);  
+  }
     
-    if (changes['gradients'] || changes['tint']) {
+    if (changes['color'] || changes['gradients'] || changes['tint']) {
       this.updateGradients();
     }
   }

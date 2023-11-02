@@ -14,7 +14,7 @@ import { FormControlComponent } from '../form-control';
     }
   ]
 })
-// TODO: Check type for inputt
+// TODO: Check type for input
 export class CeInputComponent extends FormControlComponent<number> {
   @Input() type: string = 'text';
   @Input() name?: string;
