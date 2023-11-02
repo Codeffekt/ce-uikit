@@ -3,11 +3,10 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "ng serve",
-      "type": "pwa-chrome",
+      "name": "launch docs",
       "request": "launch",
-      "preLaunchTask": "npm: start",
-      "url": "http://localhost:4200/"
+      "type": "chrome",
+      "url": "http://localhost:4201/"
     },
     {
       "name": "ng test",

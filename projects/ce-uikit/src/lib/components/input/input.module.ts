@@ -1,9 +1,9 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CeInputComponent } from './input.component';
-import { CeBorderModule, CeSizeModule, CeUtilitiesModule } from '../../utilities';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { CeLayoutModule, CePaddingModule } from '../../layout';
+import { CeLayoutModule } from '../../layout';
+import { CeUtilitiesModule } from '../../utilities';
+import { CeInputComponent } from './input.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +16,7 @@ import { CeLayoutModule, CePaddingModule } from '../../layout';
     CeUtilitiesModule
   ],
   exports: [
-    CeInputComponent,
+    CeInputComponent
   ]
 })
 export class CeInputModule { }

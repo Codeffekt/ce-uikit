@@ -1,5 +1,6 @@
 export * from './button';
 export * from './checkbox';
+export * from './color-picker';
 export * from './dialog';
 export * from './form-field';
 export * from './icon';

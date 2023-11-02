@@ -1,0 +1,6 @@
+<ng-content select="ce-gradient"></ng-content>
+<ce-color-handler *ngIf="colorPosition"
+                  position="absolute"
+                  top="{{colorPosition.y}}%"
+                  left="{{colorPosition.x}}%">
+</ce-color-handler>

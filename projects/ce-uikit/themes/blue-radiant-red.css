@@ -8,3 +8,5 @@
 :root {
     --font-sans: "inter", "cursive";    
 }
+
+@import '@angular/cdk/overlay-prebuilt.css';

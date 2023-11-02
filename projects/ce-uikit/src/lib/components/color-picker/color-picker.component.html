@@ -1,0 +1,34 @@
+<ce-column [gap]="2"
+           border
+           width="200px"
+           bgColor="neutral"
+           [margin]="2"
+           [shadow]="2">
+
+  <!-- Palette -->
+  <ce-color-palette
+                    height="200px"
+                    [color]="color"
+                    [tint]="tint"
+                    (colorChanges)="onColorSelected($event)"></ce-color-palette>
+
+  <!-- Tint -->
+  <ce-column [padding]="2"
+             [gap]="4">
+    <ce-color-tint [color]="color"
+                   (tint)="onTintSelected($event)">
+    </ce-color-tint>
+    <form [formGroup]="form">
+      <ce-input formControlName="color"></ce-input>
+    </form>
+  </ce-column>
+
+  <!-- Swatches -->
+  <ce-color-swatches [padding]="2"
+                     (color)="onColorPaletteSelected($event)"></ce-color-swatches>
+  <ce-button [padding]="2"
+             (click)="onValidate()"
+             *ngIf="updateMode==='validation'">
+    Valider
+  </ce-button>
+</ce-column>

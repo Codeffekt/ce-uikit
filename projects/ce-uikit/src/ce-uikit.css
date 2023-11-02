@@ -139,3 +139,5 @@ html {
     --text-muted : var(--dark-text-muted);
     --text-disabled : var(--dark-text-disabled);
 }
+
+@import '@angular/cdk/overlay-prebuilt.css';
