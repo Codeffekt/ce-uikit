@@ -1,7 +1,8 @@
 import { Overlay, OverlayConfig, OverlayRef } from "@angular/cdk/overlay";
 import { ComponentPortal } from "@angular/cdk/portal";
 import { Directive, ElementRef, EventEmitter, HostListener, Input, OnDestroy, OnInit, Output } from "@angular/core";
-import { Subject } from "rxjs";
+import { Subject, takeUntil } from "rxjs";
+import { CeColorPickerState } from "./color-picker-state.service";
 import { CeColorPickerComponent, CeColorPickerUpdateMode } from "./color-picker.component";
 
 const DEFAULT_COLOR = "#FFFFFF";
@@ -13,8 +14,9 @@ const DEFAULT_UPDATE_MODE: CeColorPickerUpdateMode = 'continous';
 export class CeColorPickerDirective implements OnInit, OnDestroy {
 
     @Input({ alias: 'ceColor' }) color?: string;
-    @Input({alias:'ceColorUpdateMode'}) updateMode?: CeColorPickerUpdateMode;
+    @Input({ alias: 'ceColorUpdateMode' }) updateMode?: CeColorPickerUpdateMode;
     @Output() colorPicked = new EventEmitter<string>();
+    @Output() colorStateChanges = new EventEmitter<CeColorPickerState>;
 
     @HostListener('click')
     show() {
@@ -88,12 +90,18 @@ export class CeColorPickerDirective implements OnInit, OnDestroy {
 
         colorPickerRef.instance.color = this.color ?? DEFAULT_COLOR;
         colorPickerRef.instance.updateMode = this.updateMode ?? DEFAULT_UPDATE_MODE;
-        colorPickerRef.instance.colorPicked.subscribe(color => {
-            this.colorPicked.next(color);
-        });
-        colorPickerRef.instance.colorValidated.subscribe(_ =>
-            this.detach()
-        );
+
+        colorPickerRef.instance.stateChanges()
+            .pipe(takeUntil(this.destroy$))
+            .subscribe(state => this.colorStateChanges.next(state))
+
+        colorPickerRef.instance.colorPicked
+            .pipe(takeUntil(this.destroy$))
+            .subscribe(color => this.colorPicked.next(color));
+
+        colorPickerRef.instance.colorValidated
+            .pipe(takeUntil(this.destroy$))
+            .subscribe(_ => this.detach());
     }
 
     private detach() {

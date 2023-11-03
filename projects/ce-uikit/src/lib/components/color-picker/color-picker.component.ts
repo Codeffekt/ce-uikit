@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Subject, Subscription, takeUntil } from 'rxjs';
+import { Observable, Subject, Subscription, takeUntil } from 'rxjs';
+import { CeColorPickerState, CeColorPickerStateService } from './color-picker-state.service';
 
 export type CeColorPickerUpdateMode = 'validation' | 'continous';
 
@@ -8,12 +9,15 @@ export type CeColorPickerUpdateMode = 'validation' | 'continous';
   selector: 'ce-color-picker',
   templateUrl: './color-picker.component.html',
   styleUrls: ['./color-picker.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [
+    CeColorPickerStateService
+  ]
 })
 export class CeColorPickerComponent implements OnInit, OnDestroy {
 
   @Input() color!: string;
-  @Input() updateMode :CeColorPickerUpdateMode = 'continous';
+  @Input() updateMode: CeColorPickerUpdateMode = 'continous';
   @Output() colorPicked = new EventEmitter<string>();
   @Output() colorValidated = new EventEmitter<string>();
 
@@ -24,7 +28,10 @@ export class CeColorPickerComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
   private formSub?: Subscription;
 
-  constructor(private formBuilder: FormBuilder, private cdr: ChangeDetectorRef) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private colorPickerStateService: CeColorPickerStateService
+  ) { }
 
   ngOnInit(): void {
     this.selectedColor = this.color;
@@ -37,17 +44,17 @@ export class CeColorPickerComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
-  onTintSelected(color: string) {
+  onTintChanges(color: string) {
     this.tint = color;
   }
 
-  onColorSelected(color: string) {
+  onColorChanges(color: string) {
     this.selectedColor = color;
     this.unlistenForm();
     this.form.patchValue({ 'color': color }, { onlySelf: true, emitEvent: false });
     this.listenForm();
 
-    if(this.updateMode === 'continous'){
+    if (this.updateMode === 'continous') {
       this.notifyColorPicked(this.selectedColor);
     }
   }
@@ -59,6 +66,10 @@ export class CeColorPickerComponent implements OnInit, OnDestroy {
   onValidate() {
     this.notifyColorPicked(this.selectedColor);
     this.colorValidated.next(this.selectedColor);
+  }
+
+  stateChanges(): Observable<CeColorPickerState> {
+    return this.colorPickerStateService.stateChanges();
   }
 
   private notifyColorPicked(color: string) {
