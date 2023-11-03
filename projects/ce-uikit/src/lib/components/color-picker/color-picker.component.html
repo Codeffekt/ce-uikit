@@ -10,14 +10,17 @@
                     height="200px"
                     [color]="color"
                     [tint]="tint"
-                    (colorChanges)="onColorSelected($event)"></ce-color-palette>
+                    (colorChanges)="onColorChanges($event)"></ce-color-palette>
 
-  <!-- Tint -->
+
   <ce-column [padding]="2"
              [gap]="4">
+    <!-- Tint -->
     <ce-color-tint [color]="color"
-                   (tint)="onTintSelected($event)">
+                   (tintChanges)="onTintChanges($event)">
     </ce-color-tint>
+
+    <!-- Color input -->
     <form [formGroup]="form">
       <ce-input formControlName="color"></ce-input>
     </form>

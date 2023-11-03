@@ -1,5 +1,6 @@
 export * from './background-color';
 export * from './border';
+export * from './color'
 export * from './cursor';
 export * from './dark';
 export * from './overflow';

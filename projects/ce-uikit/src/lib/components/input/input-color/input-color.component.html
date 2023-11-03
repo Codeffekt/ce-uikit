@@ -8,7 +8,10 @@
                 [ceColorUpdateMode]="updateMode"
                 [ceColor]="value"
                 [style.background-color]="value"
-                (colorPicked)="onColorChanged($event)">
+                (colorPicked)="onColorChanged($event)"
+                (colorStateChanges)="onStateChanges($event)"
+                >
   </ce-container>
   <ce-text *ngIf="valueDisplayed">{{value}}</ce-text>
 </ce-row>
+ 

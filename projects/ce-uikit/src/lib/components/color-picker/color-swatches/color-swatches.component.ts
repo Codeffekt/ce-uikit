@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { CeColorPickerUtils } from '../color-picker.utils';
+import { CeColorUtils } from '../../../utilities';
+
 
 @Component({
   selector: 'ce-color-swatches',
@@ -30,7 +31,7 @@ export class ColorSwatchesComponent implements OnInit {
       const hue = i * hueStep;
       const saturation = 82;
       const brightness = 90;
-      const color = CeColorPickerUtils.hsbToHex(hue, saturation, brightness)
+      const color = CeColorUtils.hsbToHex(hue, saturation, brightness)
       colors.push(color);
     }
 

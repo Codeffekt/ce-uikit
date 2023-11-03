@@ -5,6 +5,7 @@ export * from './dialog';
 export * from './form-field';
 export * from './icon';
 export * from './input';
+export * from './input/input-color';
 export * from './overlay';
 export * from './popover'
 export * from './select';

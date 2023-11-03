@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { CeColorPickerUtils } from '../color-picker.utils';
 import { CeGradient, CeGradientColorPosition } from '../gradient/gradient';
+import { CeColorUtils } from '../../../utilities';
 
 @Component({
   selector: 'ce-color-tint',
@@ -10,8 +10,7 @@ import { CeGradient, CeGradientColorPosition } from '../gradient/gradient';
 export class ColorTintComponent implements OnInit {
 
   @Input() color!: string;
-
-  @Output() tint = new EventEmitter<string>();
+  @Output() tintChanges = new EventEmitter<string>();
 
   gradient: CeGradient = {
     type: 'horizontal',
@@ -24,11 +23,11 @@ export class ColorTintComponent implements OnInit {
   }
 
   onTintSelected(color: string) {
-    this.tint.next(color);
+    this.tintChanges.next(color);
   }
 
   colorToPosition(): CeGradientColorPosition {
-    const [h, _, __] = CeColorPickerUtils.hexToHsb(this.color);
+    const [h, _, __] = CeColorUtils.hexToHsb(this.color);
     return { x: h * 100 / 360, y: 50, };
   }
 }
