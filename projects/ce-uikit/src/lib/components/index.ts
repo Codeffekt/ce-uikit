@@ -7,7 +7,8 @@ export * from './icon';
 export * from './input';
 export * from './input/input-color';
 export * from './overlay';
-export * from './popover'
+export * from './popover';
+export * from './radio-button';
 export * from './select';
 export * from './text';
 export * from './toast';

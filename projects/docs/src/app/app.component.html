@@ -22,7 +22,16 @@
   </ce-row>
 </ce-grid> -->
 
-
-<ce-color-picker>
-  
-</ce-color-picker>
+<form [formGroup]="formGroup">
+  <ce-column [gap]="1">
+    <ce-form-field>
+      <ce-form-field-label>Échelle (pix/m)</ce-form-field-label>
+      <ce-form-field-value>1m</ce-form-field-value>
+    </ce-form-field>
+    <ce-radio-group formControlName="radioGroup" direction="horizontal">
+      <ce-radio-button *ngFor="let radioValue of radioValues" [value]="radioValue">{{radioValue.label}}
+      </ce-radio-button>
+    </ce-radio-group>
+    <ce-input-color formControlName="colorPicker"></ce-input-color>    
+  </ce-column>
+</form>

@@ -39,7 +39,7 @@ export class CeSelectComponent<T> extends FormControlComponent<T> implements OnI
       0
     ),
   ];
-  private readonly destroy = new Subject<void>();
+  private readonly destroy$ = new Subject<void>();
 
   constructor(
     private viewportRuler: ViewportRuler,
@@ -56,8 +56,8 @@ export class CeSelectComponent<T> extends FormControlComponent<T> implements OnI
   }
 
   ngOnDestroy() {
-    this.destroy.next();
-    this.destroy.complete();
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   toggle() {
@@ -72,7 +72,7 @@ export class CeSelectComponent<T> extends FormControlComponent<T> implements OnI
   private listenViewportChanges() {
     this.viewportRuler
       .change()
-      .pipe(takeUntil(this.destroy))
+      .pipe(takeUntil(this.destroy$))
       .subscribe(() => {
         if (this.isOpen) {
           this.triggerBbox = this.trigger.nativeElement.getBoundingClientRect();
@@ -84,7 +84,7 @@ export class CeSelectComponent<T> extends FormControlComponent<T> implements OnI
   private listenValueChanges() {
     this.valueChanges()
       .pipe(
-        takeUntil(this.destroy),
+        takeUntil(this.destroy$),
       )
       .subscribe((value) => this.optionsService.setValue(value))
   }
@@ -92,7 +92,7 @@ export class CeSelectComponent<T> extends FormControlComponent<T> implements OnI
   private listenOptionSelectionChanges() {
     this.optionsService.selectedOptionChanges()
       .pipe(
-        takeUntil(this.destroy)
+        takeUntil(this.destroy$)
       )
       .subscribe((option) => {
         this.value = option?.value;

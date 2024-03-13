@@ -1,0 +1,24 @@
+<ce-row [gap]="1"
+        cursor="pointer"
+        alignItems="center"
+        (click)="select()">
+  <ce-row
+          width="12px"
+          height="12px"
+          border
+          rounded="xl"
+          borderColor="border-900"
+          alignItems="center"
+          justifyContent="center">
+    <ce-container
+                  *ngIf="active$ | async"
+                  width="6px"
+                  height="6px"
+                  rounded="xl"
+                  bgColor="primary"></ce-container>
+  </ce-row>
+
+  <ce-text [selectable]="false" [truncate]="true">
+    <ng-content></ng-content>
+  </ce-text>
+</ce-row>

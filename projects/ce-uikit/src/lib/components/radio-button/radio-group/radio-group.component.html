@@ -1,0 +1,5 @@
+<ce-grid [gap]="2"
+         autoFlow="{{ direction === 'horizontal' ? 'column':'row'}}"
+         justifyContent="flex-start">
+  <ng-content select="ce-radio-button"></ng-content>
+</ce-grid>

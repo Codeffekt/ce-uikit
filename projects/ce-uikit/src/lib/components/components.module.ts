@@ -14,6 +14,7 @@ import { CeToastModule } from './toast';
 import { CeTooltipModule } from './tooltip';
 import { CeColorPickerModule } from './color-picker';
 import { CeInputColorModule } from './input/input-color';
+import { CeRadioButtonModule } from './radio-button';
 
 @NgModule({
   declarations: [
@@ -25,17 +26,18 @@ import { CeInputColorModule } from './input/input-color';
     CeButtonModule,
     CeCheckboxModule,
     CeColorPickerModule,
+    CeDialogModule,
     CeFormFieldModule,
     CeIconModule,
     CeInputModule,
     CeInputColorModule,
     CeOverlayModule,
-    CeTextModule,
-    CeSelectModule,
-    CeDialogModule,
     CePopoverModule,
+    CeRadioButtonModule,
+    CeSelectModule,
+    CeTextModule,
     CeToastModule,
-    CeTooltipModule
+    CeTooltipModule,
   ]
 })
 export class CeComponentsModule { }

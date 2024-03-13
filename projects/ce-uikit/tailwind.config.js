@@ -5,7 +5,7 @@ const PALETTE_VARIANTS = [50, 100, 200, 300, 400, 'DEFAULT', 600, 700, 800, 900]
 
 module.exports = {
   content: [
-    "./src/**/*.{html,ts}",
+    "./projects/ce-uikit/src/**/*.{html,ts}",
   ],
   theme: {
     extend: {
