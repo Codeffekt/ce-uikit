@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CeTabItemComponent } from './tab-item/tab-item.component';
-import { TabsComponent } from './tabs/tabs.component';
+import { CeTabsComponent } from './tabs.component';
 import { CeLayoutModule } from '../../layout';
 import { CeUtilitiesModule } from '../../utilities';
 import { CeTextModule } from '../text';
@@ -11,7 +11,7 @@ import { CeButtonModule } from '../button';
 @NgModule({
   declarations: [
     CeTabItemComponent,
-    TabsComponent,
+    CeTabsComponent,
     TabItemLabelComponent
   ],
   imports: [
@@ -23,7 +23,7 @@ import { CeButtonModule } from '../button';
   ],
   exports: [
     CeTabItemComponent,
-    TabsComponent
+    CeTabsComponent
   ]
 })
 export class CeTabsModule { }

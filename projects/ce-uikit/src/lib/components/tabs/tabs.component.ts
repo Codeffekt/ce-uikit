@@ -1,12 +1,12 @@
 import { AfterContentInit, Component, ContentChildren, HostBinding, Input, OnInit, QueryList } from '@angular/core';
-import { CeTabItemComponent } from '../tab-item/tab-item.component';
+import { CeTabItemComponent } from './tab-item/tab-item.component';
 
 @Component({
   selector: 'ce-tabs',
   templateUrl: './tabs.component.html',
   styleUrls: ['./tabs.component.css'],
 })
-export class TabsComponent implements OnInit, AfterContentInit {
+export class CeTabsComponent implements OnInit, AfterContentInit {
 
   @ContentChildren(CeTabItemComponent) tabItems!: QueryList<CeTabItemComponent>;
 

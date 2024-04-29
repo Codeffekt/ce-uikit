@@ -32,6 +32,12 @@
       <ce-radio-button *ngFor="let radioValue of radioValues" [value]="radioValue">{{radioValue.label}}
       </ce-radio-button>
     </ce-radio-group>
-    <ce-input-color formControlName="colorPicker"></ce-input-color>    
+    <ce-input-color formControlName="colorPicker"></ce-input-color>
   </ce-column>
 </form>
+
+<ce-tabs>
+  <ce-tab-item label="Tab 1">Content Tab 1</ce-tab-item>
+  <ce-tab-item label="Tab 2">Content Tab 2</ce-tab-item>
+  <ce-tab-item label="Tab 3">Content Tab 3</ce-tab-item>
+</ce-tabs>

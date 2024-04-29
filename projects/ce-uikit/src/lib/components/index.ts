@@ -10,6 +10,7 @@ export * from './overlay';
 export * from './popover';
 export * from './radio-button';
 export * from './select';
+export * from './tabs';
 export * from './text';
 export * from './toast';
 export * from './tooltip';
