@@ -68,6 +68,7 @@ export class GradientPickerComponent implements OnInit, AfterViewInit, OnDestroy
       this.onStartPicking(),
       this.onPicking(),
     )
+      .pipe(takeUntil(this.destroy$))
       .subscribe((mouseEvent: MouseEvent) => {
         this.updateColorFromMouseEvent(mouseEvent);
       });
@@ -88,7 +89,7 @@ export class GradientPickerComponent implements OnInit, AfterViewInit, OnDestroy
   }
 
   /**
-   * Gets the observable definfing when picking is in progress
+   * Gets the observable defining when picking is in progress
    * @returns event when picking is in progress
    */
   private onPicking(): Observable<MouseEvent> {

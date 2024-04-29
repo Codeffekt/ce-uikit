@@ -15,6 +15,7 @@ import { CeTooltipModule } from './tooltip';
 import { CeColorPickerModule } from './color-picker';
 import { CeInputColorModule } from './input/input-color';
 import { CeRadioButtonModule } from './radio-button';
+import { CeTabsModule } from './tabs/tabs.module';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { CeRadioButtonModule } from './radio-button';
     CePopoverModule,
     CeRadioButtonModule,
     CeSelectModule,
+    CeTabsModule,
     CeTextModule,
     CeToastModule,
     CeTooltipModule,

@@ -1,5 +1,4 @@
-import { Component, HostListener, Input } from '@angular/core';
-import { CeRenderer } from '../../../core';
+import { Component } from '@angular/core';
 import { CeButtonComponent } from '../button.component';
 
 const DEFAULT_ICON_BUTTON_COLOR = 'text';
