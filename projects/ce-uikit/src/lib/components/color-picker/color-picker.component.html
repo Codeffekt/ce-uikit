@@ -10,7 +10,8 @@
                     height="200px"
                     [color]="color"
                     [tint]="tint"
-                    (colorChanges)="onColorChanges($event)"></ce-color-palette>
+                    (colorChanges)="onColorChanges($event)"
+                    ></ce-color-palette>
 
 
   <ce-column [padding]="2"
@@ -29,9 +30,4 @@
   <!-- Swatches -->
   <ce-color-swatches [padding]="2"
                      (color)="onColorPaletteSelected($event)"></ce-color-swatches>
-  <ce-button [padding]="2"
-             (click)="onValidate()"
-             *ngIf="updateMode==='validation'">
-    Valider
-  </ce-button>
 </ce-column>

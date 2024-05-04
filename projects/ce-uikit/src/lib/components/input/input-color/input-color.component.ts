@@ -1,6 +1,5 @@
-import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { CeColorPickerUpdateMode } from '../../color-picker';
 import { CeColorPickerState } from '../../color-picker/color-picker-state.service';
 import { FormControlComponent } from '../../form-control';
 
@@ -16,29 +15,28 @@ import { FormControlComponent } from '../../form-control';
     }
   ]
 })
-export class CeInputColorComponent extends FormControlComponent<string> implements OnInit {
+export class CeInputColorComponent extends FormControlComponent<string> {
 
   @Input() valueDisplayed = true;
-  @Input() updateMode: CeColorPickerUpdateMode = 'continous';
   @Output() pickerState = new EventEmitter<CeColorPickerState>();
+  @Output() previewColor = new EventEmitter<string | undefined>();
 
-  constructor(
-    private cdr: ChangeDetectorRef) { super(); }
-
-  ngOnInit(): void { }
+  constructor(private cdr: ChangeDetectorRef) {
+    super();
+  }
 
   onColorChanged(color: string | undefined) {
     this.value = color;
+
     // TODO: check this
     this.cdr.detectChanges();
   }
 
-  onStateChanges(state: CeColorPickerState) {
+  onPreviewColorChanged(color: string) {
+    this.previewColor.next(color);
+  }
 
+  onStateChanges(state: CeColorPickerState) {
     this.pickerState.next(state);
-   
-    if (state === 'idle') {
-      this.onColorChanged(this.value)
-    }
   }
 }

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { CeColorUtils } from '../../../utilities';
 import { CeGradient } from '../gradient/gradient';
+import { CeColorPicked } from '../color-picked.model';
 
 @Component({
   selector: 'ce-color-palette',
@@ -11,8 +12,8 @@ export class ColorPaletteComponent implements OnChanges {
 
   @Input() color!: string;
   @Input() tint?: string;
-  @Output() colorChanges = new EventEmitter<string>();
-  
+  @Output() colorChanges = new EventEmitter<CeColorPicked>();
+
   gradients: CeGradient[] = [];
 
   constructor() { }
@@ -29,8 +30,8 @@ export class ColorPaletteComponent implements OnChanges {
     }
   }
 
-  onColorSelected(color: string) {
-    this.colorChanges.next(color);
+  onColorSelected(colorPicked: CeColorPicked) {
+    this.colorChanges.next(colorPicked);
   }
 
   colorToPosition(color: string) {

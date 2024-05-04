@@ -99,7 +99,11 @@ export class CeColorUtils {
         return '#' + ("000000" + (((dColor & 0xFF) << 16) + (dColor & 0xFF00) + ((dColor >> 16) & 0xFF)).toString(16)).slice(-6);
     }
 
-    static hexStringToBgrBase10(hexColor: string) {
+    static hexStringToBgrBase10(hexColor?: string) {        
+        if(!hexColor){
+            return -1;
+        }
+        
         var r = parseInt(hexColor.slice(1, 3), 16),
             g = parseInt(hexColor.slice(3, 5), 16),
             b = parseInt(hexColor.slice(5, 7), 16);

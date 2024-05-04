@@ -11,12 +11,18 @@ export type CeColorPickerState = 'picking' | 'idle';
 @Injectable()
 export class CeColorPickerStateService {
 
+    private state: CeColorPickerState = 'idle';
     private state$ = new ReplaySubject<CeColorPickerState>(1);
 
     constructor() { }
 
     setState(state: CeColorPickerState) {
+        this.state = state;
         this.state$.next(state);
+    }
+
+    getState(): CeColorPickerState {
+        return this.state;
     }
 
     stateChanges(): Observable<CeColorPickerState> {

@@ -4,6 +4,7 @@ import { CeColorUtils } from '../../../../utilities';
 import { CeGradientColorPosition } from '../gradient';
 import { CeGradientComponent } from '../gradient.component';
 import { CeColorPickerState, CeColorPickerStateService } from '../../color-picker-state.service';
+import { CeColorPicked } from './../../color-picked.model';
 
 @Component({
   selector: 'ce-gradient-picker',
@@ -16,7 +17,7 @@ export class GradientPickerComponent implements OnInit, AfterViewInit, OnDestroy
   @Input() color?: string;
   @Input() lock?: 'x' | 'y';
 
-  @Output() colorChanges = new EventEmitter<string>();
+  @Output() colorChanges = new EventEmitter<CeColorPicked>();
 
   @ContentChild(CeGradientComponent) gradientComponent?: CeGradientComponent;
   @ContentChild(CeGradientComponent, { read: ElementRef }) gradientElementRef?: ElementRef;
@@ -32,7 +33,7 @@ export class GradientPickerComponent implements OnInit, AfterViewInit, OnDestroy
   ngOnInit(): void { }
 
   ngAfterViewInit(): void {
-    this.listenClickEvent();
+    this.listenMouseDownEvent();
     this.listenGradientChanges();
     this.setColorPositionFromColor(this.color);
   }
@@ -48,7 +49,7 @@ export class GradientPickerComponent implements OnInit, AfterViewInit, OnDestroy
     }
   }
 
-  private listenClickEvent() {
+  private listenMouseDownEvent() {
     fromEvent<MouseEvent>(this.gradientElementRef?.nativeElement, 'mousedown')
       .pipe(takeUntil(this.destroy$),)
       .subscribe(_ => this.listenPickingEvent());
@@ -69,11 +70,13 @@ export class GradientPickerComponent implements OnInit, AfterViewInit, OnDestroy
       this.onPicking(),
     )
       .pipe(takeUntil(this.destroy$))
-      .subscribe((mouseEvent: MouseEvent) => {
-        this.updateColorFromMouseEvent(mouseEvent);
-      });
+      .subscribe((mouseEvent: MouseEvent) =>
+        this.updateColorFromMouseEvent(mouseEvent)
+      );
 
-    this.onEndPicking().subscribe();
+    this.onEndPicking()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(_ => this.updateSelectedColor());
   }
 
   /**
@@ -159,7 +162,7 @@ export class GradientPickerComponent implements OnInit, AfterViewInit, OnDestroy
     }
 
     const selectedColor = this.readColorFromPosition(this.colorPosition);
-    this.colorChanges.next(selectedColor);
+    this.colorChanges.next({ color: selectedColor, pickerState: this.colorPickerStateService.getState() });
   }
 
   /**

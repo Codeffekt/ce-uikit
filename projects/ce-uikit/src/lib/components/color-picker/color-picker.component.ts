@@ -2,8 +2,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnI
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Observable, Subject, Subscription, takeUntil } from 'rxjs';
 import { CeColorPickerState, CeColorPickerStateService } from './color-picker-state.service';
-
-export type CeColorPickerUpdateMode = 'validation' | 'continous';
+import { CeColorPicked } from './color-picked.model';
 
 @Component({
   selector: 'ce-color-picker',
@@ -17,9 +16,9 @@ export type CeColorPickerUpdateMode = 'validation' | 'continous';
 export class CeColorPickerComponent implements OnInit, OnDestroy {
 
   @Input() color!: string;
-  @Input() updateMode: CeColorPickerUpdateMode = 'continous';
   @Output() colorPicked = new EventEmitter<string>();
   @Output() colorValidated = new EventEmitter<string>();
+  @Output() previewColor = new EventEmitter<string>();
 
   tint?: string;
   selectedColor!: string;
@@ -48,13 +47,15 @@ export class CeColorPickerComponent implements OnInit, OnDestroy {
     this.tint = color;
   }
 
-  onColorChanges(color: string) {
-    this.selectedColor = color;
+  onColorChanges(colorPicked: CeColorPicked) {
+    this.selectedColor = colorPicked.color;
     this.unlistenForm();
-    this.form.patchValue({ 'color': color }, { onlySelf: true, emitEvent: false });
+    this.form.patchValue({ 'color': colorPicked.color }, { onlySelf: true, emitEvent: false });
     this.listenForm();
-
-    if (this.updateMode === 'continous') {
+    
+    if(colorPicked.pickerState === 'picking') {
+      this.notifyPreviewColor(this.selectedColor);
+    } else {
       this.notifyColorPicked(this.selectedColor);
     }
   }
@@ -63,17 +64,16 @@ export class CeColorPickerComponent implements OnInit, OnDestroy {
     this.color = color;
   }
 
-  onValidate() {
-    this.notifyColorPicked(this.selectedColor);
-    this.colorValidated.next(this.selectedColor);
-  }
-
   stateChanges(): Observable<CeColorPickerState> {
     return this.colorPickerStateService.stateChanges();
   }
 
   private notifyColorPicked(color: string) {
     this.colorPicked.next(color);
+  }
+
+  private notifyPreviewColor(previewColor: string) {
+    this.previewColor.next(previewColor);
   }
 
   private initForm() {

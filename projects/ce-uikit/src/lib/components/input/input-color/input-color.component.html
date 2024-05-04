@@ -4,11 +4,12 @@
                 width="24px"
                 height="24px"
                 rounded
+                #colorPicker
                 ceColorPicker
-                [ceColorUpdateMode]="updateMode"
                 [ceColor]="value"
                 [style.background-color]="value"
                 (colorPicked)="onColorChanged($event)"
+                (previewColor)="onPreviewColorChanged($event)"
                 (colorStateChanges)="onStateChanges($event)"
                 >
   </ce-container>

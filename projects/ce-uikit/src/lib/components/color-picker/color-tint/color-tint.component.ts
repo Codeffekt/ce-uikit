@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CeGradient, CeGradientColorPosition } from '../gradient/gradient';
 import { CeColorUtils } from '../../../utilities';
+import { CeColorPicked } from '../color-picked.model';
 
 @Component({
   selector: 'ce-color-tint',
@@ -22,8 +23,8 @@ export class ColorTintComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onTintSelected(color: string) {
-    this.tintChanges.next(color);
+  onTintSelected(colorPicked: CeColorPicked) {
+    this.tintChanges.next(colorPicked.color);
   }
 
   colorToPosition(): CeGradientColorPosition {
