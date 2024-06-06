@@ -5,7 +5,7 @@ import { CeCheckboxModule } from './checkbox';
 import { CeDialogModule } from './dialog';
 import { CeFormFieldModule } from './form-field';
 import { CeIconModule } from './icon';
-import {  CeInputModule } from './input';
+import { CeInputModule } from './input';
 import { CeSelectModule } from './select';
 import { CeTextModule } from './text';
 import { CeOverlayModule } from './overlay';
@@ -16,7 +16,7 @@ import { CeColorPickerModule } from './color-picker';
 import { CeInputColorModule } from './input/input-color';
 import { CeRadioButtonModule } from './radio-button';
 import { CeTabsModule } from './tabs/tabs.module';
-
+import { CeTextAreaModule } from './text-area';
 @NgModule({
   declarations: [
   ],
@@ -37,6 +37,7 @@ import { CeTabsModule } from './tabs/tabs.module';
     CeRadioButtonModule,
     CeSelectModule,
     CeTabsModule,
+    CeTextAreaModule,
     CeTextModule,
     CeToastModule,
     CeTooltipModule,

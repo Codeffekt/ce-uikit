@@ -2,6 +2,8 @@ import { Directive, Input } from '@angular/core';
 import { CeRenderer } from '../../core/renderer';
 
 export type CeAlignItems =
+  'start' |
+  'end' |
   'flex-start' |
   'flex-end' |
   'center' |
