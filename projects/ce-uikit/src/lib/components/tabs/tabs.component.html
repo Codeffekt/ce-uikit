@@ -1,11 +1,11 @@
-<ce-row [gap]="3"
-        [paddingX]="paddingLabelsX"
-        [paddingY]="paddingLabelsY">
-  <ce-tab-item-label [active]="tab.active"
-                     *ngFor="let tab of tabItems"
-                     (click)="selectTab(tab)">
-    {{tab.label}}
-  </ce-tab-item-label>
-</ce-row>
+<ce-column [gap]="2">
+  <ce-row [gap]="3">
+    <ce-tab-item-label [active]="tab.active"
+                       *ngFor="let tab of tabItems"
+                       (click)="selectTab(tab)">
+      {{tab.label}}
+    </ce-tab-item-label>
+  </ce-row>
 
-<ng-content></ng-content>
+  <ng-content></ng-content>
+</ce-column>

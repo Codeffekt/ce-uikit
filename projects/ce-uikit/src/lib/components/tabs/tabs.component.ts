@@ -1,4 +1,4 @@
-import { AfterContentInit, Component, ContentChildren, HostBinding, Input, OnInit, QueryList } from '@angular/core';
+import { AfterContentInit, Component, ContentChildren, Input, QueryList } from '@angular/core';
 import { CeTabItemComponent } from './tab-item/tab-item.component';
 
 @Component({
@@ -6,17 +6,11 @@ import { CeTabItemComponent } from './tab-item/tab-item.component';
   templateUrl: './tabs.component.html',
   styleUrls: ['./tabs.component.css'],
 })
-export class CeTabsComponent implements OnInit, AfterContentInit {
+export class CeTabsComponent implements AfterContentInit {
 
   @ContentChildren(CeTabItemComponent) tabItems!: QueryList<CeTabItemComponent>;
 
-  @Input() paddingLabelsX: number = 3;
-  @Input() paddingLabelsY: number = 3;
-
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
   ngAfterContentInit() {
     if (this.activeTabs.length === 0) {

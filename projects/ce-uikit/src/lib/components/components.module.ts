@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { CeButtonModule } from './button';
 import { CeCheckboxModule } from './checkbox';
 import { CeDialogModule } from './dialog';
+import { CeDividerModule } from './divider';
 import { CeFormFieldModule } from './form-field';
 import { CeIconModule } from './icon';
 import { CeInputModule } from './input';
@@ -17,6 +18,7 @@ import { CeInputColorModule } from './input/input-color';
 import { CeRadioButtonModule } from './radio-button';
 import { CeTabsModule } from './tabs/tabs.module';
 import { CeTextAreaModule } from './text-area';
+
 @NgModule({
   declarations: [
   ],
@@ -28,6 +30,7 @@ import { CeTextAreaModule } from './text-area';
     CeCheckboxModule,
     CeColorPickerModule,
     CeDialogModule,
+    CeDividerModule,
     CeFormFieldModule,
     CeIconModule,
     CeInputModule,
